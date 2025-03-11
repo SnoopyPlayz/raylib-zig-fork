@@ -789,6 +789,10 @@ pub fn rlSetVertexAttribute(index: u32, compSize: i32, ty: i32, normalized: bool
     cdef.rlSetVertexAttribute(@as(c_uint, index), @as(c_int, compSize), @as(c_int, ty), normalized, @as(c_int, stride), @as(c_int, offset));
 }
 
+pub fn rlSetVertexAttributeI(index: u32, compSize: i32, ty: i32, stride: i32, offset: i32) void {
+    cdef.rlSetVertexAttributeI(@as(c_uint, index), @as(c_int, compSize), @as(c_int, ty), @as(c_int, stride), @as(c_int, offset));
+}
+
 /// Set vertex attribute data divisor
 pub fn rlSetVertexAttributeDivisor(index: u32, divisor: i32) void {
     cdef.rlSetVertexAttributeDivisor(@as(c_uint, index), @as(c_int, divisor));

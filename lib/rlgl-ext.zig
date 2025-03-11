@@ -108,6 +108,7 @@ pub extern "c" fn rlUpdateVertexBufferElements(id: c_uint, data: *const anyopaqu
 pub extern "c" fn rlUnloadVertexArray(vaoId: c_uint) void;
 pub extern "c" fn rlUnloadVertexBuffer(vboId: c_uint) void;
 pub extern "c" fn rlSetVertexAttribute(index: c_uint, compSize: c_int, ty: c_int, normalized: bool, stride: c_int, offset: c_int) void;
+pub extern "c" fn rlSetVertexAttributeI(index: c_uint, compSize: c_int, ty: c_int, stride: c_int, offset: c_int) void;
 pub extern "c" fn rlSetVertexAttributeDivisor(index: c_uint, divisor: c_int) void;
 pub extern "c" fn rlSetVertexAttributeDefault(locIndex: c_int, value: *const anyopaque, attribType: c_int, count: c_int) void;
 pub extern "c" fn rlDrawVertexArray(offset: c_int, count: c_int) void;

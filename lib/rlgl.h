@@ -743,6 +743,7 @@ RLAPI void rlUpdateVertexBufferElements(unsigned int id, const void *data, int d
 RLAPI void rlUnloadVertexArray(unsigned int vaoId);     // Unload vertex array (vao)
 RLAPI void rlUnloadVertexBuffer(unsigned int vboId);    // Unload vertex buffer object
 RLAPI void rlSetVertexAttribute(unsigned int index, int compSize, int type, bool normalized, int stride, int offset); // Set vertex attribute data configuration
+RLAPI void rlSetVertexAttributeI(unsigned int index, int compSize, int type, int stride, int offset);
 RLAPI void rlSetVertexAttributeDivisor(unsigned int index, int divisor); // Set vertex attribute data divisor
 RLAPI void rlSetVertexAttributeDefault(int locIndex, const void *value, int attribType, int count); // Set vertex attribute default value, when attribute to provided
 RLAPI void rlDrawVertexArray(int offset, int count);    // Draw vertex array (currently active vao)
@@ -4038,6 +4039,19 @@ void rlSetVertexAttribute(unsigned int index, int compSize, int type, bool norma
 
     size_t offsetNative = offset;
     glVertexAttribPointer(index, compSize, type, normalized, stride, (void *)offsetNative);
+#endif
+}
+
+void rlSetVertexAttributeI(unsigned int index, int compSize, int type, int stride, int offset)
+{
+#if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
+    // NOTE: Data type could be: GL_BYTE, GL_UNSIGNED_BYTE, GL_SHORT, GL_UNSIGNED_SHORT, GL_INT, GL_UNSIGNED_INT
+    // Additional types (depends on OpenGL version or extensions):
+    //  - GL_HALF_FLOAT, GL_FLOAT, GL_DOUBLE, GL_FIXED,
+    //  - GL_INT_2_10_10_10_REV, GL_UNSIGNED_INT_2_10_10_10_REV, GL_UNSIGNED_INT_10F_11F_11F_REV
+
+    size_t offsetNative = offset;
+    glVertexAttribPointer(index, compSize, type, stride, (void *)offsetNative);
 #endif
 }
 
